@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# WeChatStudy
-微信小程序
-=======
-# 小程序笔记
+﻿# 小程序笔记
 ### JSON配置
 - app.json      
 `app.json` 指小程序的全局配置。  
