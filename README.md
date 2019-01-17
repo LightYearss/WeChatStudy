@@ -48,7 +48,7 @@
 | navigateToMiniProgramAppIdList | 否   | 需要跳转的小程序列表                 |
 | usingComponents                | 否   | 全局自定义组件配置                   |
 | permission                     | 否   | 小程序接口权限相关设置               |
----
+
 #### pages
 用于指定小程序由哪些页面组成，每一项都对应一个页面的路径+文件名 信息。  
 **e.g:**  
@@ -74,7 +74,7 @@ app.json中：
   "pages":["pages/index/index","pages/logs/logs"]
 }
 ```
----
+
 #### window
 用于设置小程序的状态栏、导航条、标题、窗口背景色。  
 - navigationBarBackgroundColor:导航栏背景色(十六进制颜色值)
@@ -84,7 +84,7 @@ app.json中：
 - backgroundTxtStyle:下拉loading的样式(`dark`/`light`)
 - enablePullDownRefresh:是否开启当前页面的下拉刷新
 - onReachBottomDistance:页面上拉触底事件触发时距页面底部距离(单位px)
----
+
 #### tabBar
 若小程序是一个多tab应用（客户端窗口的底部或顶部有tab栏可以切换页面），可以通过tabBar配置项指定tab栏的表现，以及tab切换时显示的对应页面。  
 - color:tab上的文字默认颜色(十六进制颜色)
@@ -103,24 +103,24 @@ app.json中：
 | text             | 是   | tab上按钮文字                 |
 | iconPath         | 否   | 图片路径                      |
 | selectedIconPath | 否   | 选中时的图片路径              |
----
+
 #### networkTimeout  
 各类网络请求的超时时间，单位为毫秒。
 
----
+
 #### debug
 可以在开发者工具中开启`debug`模式，在开发者工具的控制台面板，调试信息以`info`的形式给出，其信息有Page的注册，页面路由，数据更新，事件触发等。可以帮助开发者快速定位一些常见的问题。
 
----
+
 #### functionalPages
 启用插件功能页时，插件所有者小程序需设置为`true`
 
----
+
 #### requiredBackgroundModes
 申明需要后台运行能力，类型为数组。  
 - audio:后台音乐播放
 
----
+
 #### permission
 小程序接口权限相关设置。
 
@@ -143,9 +143,46 @@ app.json中：
   }
 }
 ```
+
 ---
+## project.config.json  
+###### 使用一个工具时会有一些个性化配置，如界面颜色、编译配置...防止环境变化而重新配置，小程序开发者工具会在每个项目的根目录生成一个`project.config.json`,在工具上做的任何配置都会写入此文件，当环境变化时，只需载入同一项目的代码包即可恢复个性化配置。  
+[开发者工具的配置](https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html)  
+**e.g:**
+```
+{
+  "miniprogramRoot": "./src",
+  "qcloudRoot": "./svr",
+  "setting": {
+    "postcss": true,
+    "es6": true,
+    "minified": true,
+    "urlCheck": false
+  },
+  "packOptions": {
+    "ignore": []
+  },
+  "debugOptions": {}
+}
+```
+---
+## page.json
+`page.json`用来表示pages/logs目录下的`logs.json`这类和小程序页面相关的配置。  
+可以让开发者独立定义每个页面的一些属性。  
 #### 页面配置
 每个小程序页面都可以使用`.json`文件来对本页面的窗口表现进行配置。  
 页面的配置只能设置`app.json`中部分`window`配置项的内容。  
-页面中配置项会覆盖`app.json`的`window`中相同的配置项。
+页面中配置项会覆盖`app.json`的`window`中相同的配置项。  
+细节：[页面配置](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html)  
+**e.g:**
+```
+{
+  "navigationBarBackgroundColor":"#ffffff",
+  "navigationBarTextStyle":"black",
+  "navigationBarTitleText":"微信接口功能演示",
+  "backgroundColor":"#eeeeee",
+  "backgroundTxtStyle":"light"
+}
+```
 > `.json`只能设置`window`相关的配置项，以决定本页面的窗口表现，所以无需写`window`属性
+---
