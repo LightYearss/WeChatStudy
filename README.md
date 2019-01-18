@@ -187,3 +187,12 @@ app.json中：
 ```
 > `.json`只能设置`window`相关的配置项，以决定本页面的窗口表现，所以无需写`window`属性
 ---
+# WXML模板
+`HTML`与`WXML`的不同
+- 标签名有些不一样  
+将某些组件包装起来，大大提高开发效率。  
+小程序`WXML`用的标签是`view`,`button`,`text`等等，这些标签是小程序包装好的基本能力，还提供了地图、视频、音频等组件能力。  
+**详细组件参考**[小程序的组件](https://developers.weixin.qq.com/miniprogram/dev/component/)  
+- 多了些`wx:if`这样的属性以及`{{}}`这样的表达式  
+详细参考[WXML](https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/index.html)
+---
