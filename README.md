@@ -196,3 +196,95 @@ app.json中：
 - 多了些`wx:if`这样的属性以及`{{}}`这样的表达式  
 详细参考[WXML](https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/index.html)
 ---
+# 页面Page
+### Page(Object)构造器
+`Page(Object)`函数用来注册一个页面。接受一个`Object`类型参数，其指定页面的初始数据、生命周期回调、时间处理函数等。  
+**Object参数说明：**  
+
+| 属性              | 描述                                                                   |
+| ----------------- | ---------------------------------------------------------------------- |
+| data              | 页面初始数据                                                           |
+| onLoad            | 生命周期回调——监听页面加载                                             |
+| onShow            | 监听页面显示                                                           |
+| onReady           | 监听页面初次渲染完成                                                   |
+| onHide            | 监听页面隐藏                                                           |
+| onUnload          | 监听页面卸载                                                           |
+| onPullDownRefresh | 监听用户下拉动作                                                       |
+| onReachBottom     | 页面上拉触底事件的处理函数                                             |
+| onShareAppMessage | 用户点击右上角转发                                                     |
+| onPageScroll      | 页面滚动触发事件的处理函数                                             |
+| onResize          | 页面尺寸改变时触发                                                     |
+| onTabItemTap      | 当前是tab页时，点击tab时触发                                           |
+| 其他              | 可以添加任意函数或数据到`Object`参数中，在页面的函数中用`this`可以访问 |
+
+**e.g.:**
+```
+// index.js
+Page({
+  data: {
+    text: 'This is page data.'
+  },
+  onLoad(options) {
+    // Do some initialize when page load.
+  },
+  onReady() {
+    // Do something when page ready.
+  },
+  onShow() {
+    // Do something when page show.
+  },
+  onHide() {
+    // Do something when page hide.
+  },
+  onUnload() {
+    // Do something when page close.
+  },
+  onPullDownRefresh() {
+    // Do something when pull down.
+  },
+  onReachBottom() {
+    // Do something when page reach bottom.
+  },
+  onShareAppMessage() {
+    // return custom share data when user share.
+  },
+  onPageScroll() {
+    // Do something when page scroll
+  },
+  onResize() {
+    // Do something when page resize
+  },
+  onTabItemTap(item) {
+    console.log(item.index)
+    console.log(item.pagePath)
+    console.log(item.text)
+  },
+  // Event handler.
+  viewTap() {
+    this.setData({
+      text: 'Set some data for updating view.'
+    }, function () {
+      // this is setData callback
+    })
+  },
+  customData: {
+    hi: 'MINA'
+  }
+})
+```
+
+### data
+`data`是页面第一次渲染使用的初始数据。   
+**e.g.:**
+```
+<view>{{text}}</view>
+<view>{{array[0].msg}}</view>
+```
+```
+Page({
+  data: {
+    text: 'init data',
+    array: [{msg: '1'}, {msg: '2'}]
+  }
+})
+```
